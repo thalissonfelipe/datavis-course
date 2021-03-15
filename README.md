@@ -11,3 +11,5 @@ Este repositório será utilizado na disciplina de Visualização de Dados com a
 [index07.html](basic/index07.html)<br>
 [index08.html](basic/index08.html)<br>
 [index09.html](basic/index09.html)<br>
+
+[Projeto Final](project/index.html)
