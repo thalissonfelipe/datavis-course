@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+}
+
+line.link {
+    fill: none;
+    stroke: #ddd;
+    stroke-opacity: 0.8;
+    stroke-width: 1.5px;
+}
+
+.dc-chart g.row text {
+    font-family: sans-serif;
+    font-weight: 700;
+    fill: white;
+}
+
+#bilevel {
+    position: relative;
+}
+
+.club-image {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: none;
+    background-color: red;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -80%);
+    border-radius: 50%;
+}
+
+.club-image img {
+    width: 100%;
+}

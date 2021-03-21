@@ -1,58 +1,58 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Final</title>
-    <style>
-        html, body {
-            height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+    <main role="main" class="container">
+        <div class="row">
+            <h1>FIFA</h1>
+        </div>
+        <div class="row">
+            <h3> Seleção do Jogo </h3>
+        </div>
+        <div class="row">
+            <div id="field" class="col-6">
+                <svg width="500" height="500"></svg>
+            </div>
+            <div class = "col-6">
+                <div id="bar-chart" class="col-12">
+                    <h5>Rank Melhores Jogadores</h5>
+                </div> 
+                <div id="map" class="col-12">
+                    <h5> Overall x Wage </h5>
+                    <svg>width="1600" height="1000"></svg>
+                </div>
+            </div>
+            <div class="row">
+                <h3> Melhores jogadores por país</h3>
+            </div>
+            <div id="mapid" class="row">
+                <svg width="954" height="954"></svg>
+            </div>
+            <!-- <p>Dados retirados do site da <a href="http://www.sspds.ce.gov.br/">SSPDS</a></p> -->
+        </div>
+        <div class="row">
+            <div id="bilevel" class="col-12">
+                <div class="club-image"></div>
+                <svg width="954" height="954"></svg>
+            </div>
+        </div>
+    </main>
 </body>
-<script src='https://d3js.org/d3.v6.min.js'></script>
-<script>
-    async function fetchData() {
-        const response = await fetch('https://raw.githubusercontent.com/emanueles/datavis-course/master/assets/files/observable/data.json');
-        const data = await response.json();
-
-        return data;
-    }
-    
-    const dataset = fetchData();
-    
-    dataset.then(data => {
-        const width = 600;
-        const height = 400;
-        const svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
-
-        svg.selectAll('rect')
-            .data(data)
-            .enter()
-            .append('rect')
-            .attr('x', 10)
-            .attr('y', (d, i) => i * 30 + 20)
-            .attr('height', 20)
-            .attr('width', d => d.despesa*2)
-            .attr('fill', 'DarkCyan');
-
-        svg.selectAll('text')
-            .data(data)
-            .enter()
-            .append('text')
-            .attr('x', d => d.despesa*2 + 12)
-            .attr('y', (d, i) => i * 30 + 20 + 10)
-            .text(d => d.despesa + ' : ' + d.categoria)
-            .style('font-family', 'Arial')
-            .style('font-size', '14px')
-            .style('font-weight', '500')
-            .attr('dominant-baseline', 'central')
-
-        return svg.node()
-    });
-
-</script>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.5.4/crossfilter.min.js"></script>
+<script src="https://unpkg.com/dc@4/dist/dc.js"></script>
+<script src="https://unpkg.com/topojson@3"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="scripts/global.js"></script>
+<script src="scripts/maps.js"></script>
+<script src="scripts/utils.js"></script>
+<script src="scripts/index.js"></script>
 </html>
