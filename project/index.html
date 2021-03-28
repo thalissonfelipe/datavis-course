@@ -15,28 +15,25 @@
             <h1>FIFA</h1>
         </div>
         <div class="row">
-            <h3> Seleção do Jogo </h3>
-        </div>
-        <div class="row">
-            <div id="field" class="col-6">
+            <div id="field" class="col-4">
                 <svg width="500" height="500"></svg>
             </div>
-            <div class = "col-6">
-                <div id="bar-chart" class="col-12">
-                    <h5>Rank Melhores Jogadores</h5>
-                </div> 
-                <div id="map" class="col-12">
-                    <h5> Overall x Wage </h5>
-                    <svg>width="1600" height="1000"></svg>
-                </div>
-            </div>
-            <div class="row">
-                <h3> Melhores jogadores por país</h3>
-            </div>
-            <div id="mapid" class="row">
-                <svg width="954" height="954"></svg>
+            <div id="mapid" class="col-8">
+                <svg width="954" height="500"></svg>
             </div>
             <!-- <p>Dados retirados do site da <a href="http://www.sspds.ce.gov.br/">SSPDS</a></p> -->
+        </div>
+        <div class="row">
+            <div id="bar-chart" class="col-sm-4">
+                <h5>Top 5 Melhores Jogadores</h5>
+            </div> 
+            <div id="scatterplot-chart" class="col-sm-4">
+                <h5>Age x Overall</h5>
+            </div>
+            <div id="other-chart" class="col-sm-4">
+                <h5>Other Chart</h5>
+            </div>
+        </div>
         </div>
         <div class="row">
             <div id="bilevel" class="col-12">
@@ -51,8 +48,12 @@
 <script src="https://unpkg.com/dc@4/dist/dc.js"></script>
 <script src="https://unpkg.com/topojson@3"></script>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-<script src="scripts/global.js"></script>
-<script src="scripts/maps.js"></script>
-<script src="scripts/utils.js"></script>
+<script src="scripts/constants.js"></script>
 <script src="scripts/index.js"></script>
+<script src="scripts/utils.js"></script>
+<script src="scripts/map.js"></script>
+<script src="scripts/field.js"></script>
+<script src="scripts/top-five.js"></script>
+<script src="scripts/scatterplot.js"></script>
+<script src="scripts/bileveledge.js"></script>
 </html>
