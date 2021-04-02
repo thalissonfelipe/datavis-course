@@ -3,15 +3,20 @@ const fieldSVG = d3.select('#field').select('svg');
 const fieldWidth = 360;
 const fieldHeight = 500;
 
-// BarChart
-const barChart = new dc.RowChart('#bar-chart');
-const barWidth = 400;
-const barHeight = 200;
+// rowChart - Top five players
+const rowChart = new dc.RowChart('#row-chart');
+const rowWidth = 400;
+const rowHeight = 200;
 
 // ScatterPlot
 const scatterPlotChart = new dc.ScatterPlot('#scatterplot-chart');
 const scatterWidth = 400;
 const scatterHeight = 200;
+
+// BarChart - Age/Overall
+const barChart = new dc.BarChart('#bar-chart');
+const barWidth = 400;
+const barHeight = 200;
 
 // Leaflet Map
 const southWest = L.latLng(-90, -180);

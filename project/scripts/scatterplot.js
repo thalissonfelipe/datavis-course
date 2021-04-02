@@ -1,22 +1,30 @@
 function loadScatterPlot() {
-  const overallAgeGroup = overallAgeDimension.group();
-  const maxOverall = d3.max(overallAgeGroup.top(Infinity).map(d => d.key), d => d[0]);
-  const maxAge = d3.max(overallAgeGroup.top(Infinity).map(d => d.key), d => d[1]);
-  const xscatterScale = d3.scaleLinear().domain([0, maxAge]).range([0, scatterWidth]);
-  const yscatterScale = d3.scaleLinear().domain([0, maxOverall]).range([scatterHeight, 0]);
+  let heightWeightGroup = heightWeightDim.group();
+  let weights = d3.extent(heightWeightDim.top(Infinity).map(d => d.Weight));
+  let heights = d3.extent(heightWeightDim.top(Infinity).map(d => d.Height));
+  let overalls = d3.extent(heightWeightDim.top(Infinity).map(d => d.Overall));
+  let xscatterScale = d3.scaleLinear().domain(weights);
+  let yscatterScale = d3.scaleLinear().domain(heights);
+  let colorScale = d3.scaleQuantize().domain(overalls).range(d3.schemeYlOrRd[5]);
 
   scatterPlotChart
     .width(scatterWidth)
     .height(scatterHeight)
-    .dimension(overallAgeDimension)
-    .group(overallAgeGroup)
+    .dimension(heightWeightDim)
+    .group(heightWeightGroup)
     .x(xscatterScale)
     .y(yscatterScale)
+    .elasticY(true)
+    .elasticX(true)
     .brushOn(false)
-    .symbolSize(8)
-    .xAxisLabel('Age')
-    .yAxisLabel('Overall')
-    .colorAccessor(d => d.key[2])
+    .symbolSize(5)
+    .renderLabel(false)
+    .xAxisLabel('Weight (kg)')
+    .yAxisLabel('Height (m)')
+    .colors(colorScale)
+    .colorAccessor(d => {
+      return d.key[2];
+    })
 
   scatterPlotChart.render();
 }

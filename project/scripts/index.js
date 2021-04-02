@@ -6,7 +6,8 @@ let bestPlayerMap = new Map();
 let facts;
 let seriesDim;
 let nationalityDim;
-let overallAgeDimension;
+let heightWeightDim;
+let ageDimension;
 
 const promises = [
   d3.csv('https://raw.githubusercontent.com/icarodelay/projeto-datavis-fifa/main/FIFA21_official_data.csv', function(d) {
@@ -21,7 +22,14 @@ const promises = [
     if (rename.get(d.Nationality)) {
       overallMap.set(rename.get(d.Nationality), overallMap.get(d.Nationality));
     }
-    d.Wage = +d.Wage.replace(/\D/g, '');
+    if (d.Wage.indexOf('K')) {
+      d.Wage = +d.Wage.replace(/\D/g, '') * 1000;
+    } else {
+      d.Wage = +d.Wage.replace(/\D/g, '');
+    }
+    let [feet, inches] = d.Height.split("'"); // split the height in feet and inches (5'6);
+    d.Height = ((+feet * 30.48) + (+inches * 2.54)) / 100; // height in m
+    d.Weight = +d.Weight.replace(/\D/g, '') / 2.205; // convert lbs to kg
     return d;
   }),
   d3.json('https://raw.githubusercontent.com/icarodelay/projeto-datavis-fifa/main/custom.geo.json'),
@@ -55,11 +63,13 @@ function ready([data, countries, graph, world]) {
   // Dimensions
   seriesDim = facts.dimension(d => [d.Overall, d.ID, d.Name]);
   nationalityDim = facts.dimension(d => d.Nationality);
-  overallAgeDimension = facts.dimension(d => [d.Overall, d.Age]);
+  heightWeightDim = facts.dimension(d => [d.Weight, d.Height, d.Overall]);
+  ageDimension = facts.dimension(d => d.Age);
 
   loadField();
   loadMap(countries, world);
   loadTopFivePlayers();
   loadScatterPlot();
+  loadBarChart();
   loadBilevelEdgeBundling(graph);
 }
