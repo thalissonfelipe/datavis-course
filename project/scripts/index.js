@@ -8,6 +8,7 @@ let seriesDim;
 let nationalityDim;
 let heightWeightDim;
 let ageDimension;
+let colorScale;
 
 const promises = [
   d3.csv('https://raw.githubusercontent.com/icarodelay/projeto-datavis-fifa/main/FIFA21_official_data.csv', function(d) {
@@ -65,6 +66,12 @@ function ready([data, countries, graph, world]) {
   nationalityDim = facts.dimension(d => d.Nationality);
   heightWeightDim = facts.dimension(d => [d.Weight, d.Height, d.Overall]);
   ageDimension = facts.dimension(d => d.Age);
+
+  // Color Scale
+  colorScale = d3.scaleSequential()
+    .domain(d3.extent(Array.from(overallMap.values())))
+    .interpolator(d3.interpolateYlGnBu)
+    .unknown('#ccc');
 
   loadField();
   loadMap(countries, world);

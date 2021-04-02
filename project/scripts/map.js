@@ -72,11 +72,6 @@ function loadMap(countries, world) {
   const mapSVG = d3.select('#mapid').select('svg').attr('viewBox', [0, 0, mapWidth, mapHeight()]);
   mapSVG.selectAll('*').remove();
 
-  const colorScale = d3.scaleSequential()
-    .domain(d3.extent(Array.from(overallMap.values())))
-    .interpolator(d3.interpolateYlGnBu)
-    .unknown('#ccc');
-
   const style = feature => ({
     weight: 1,
     opacity: 1,
