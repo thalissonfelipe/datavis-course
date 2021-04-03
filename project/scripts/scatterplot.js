@@ -22,9 +22,7 @@ function loadScatterPlot() {
     .xAxisLabel('Weight (kg)')
     .yAxisLabel('Height (m)')
     .colors(colorScale)
-    .colorAccessor(d => {
-      return d.key[2];
-    });
+    .colorAccessor(d => d.key[2]);
 
   // scatterPlotChart.legendables = () => {
   //   let byColor = {};

@@ -74,3 +74,42 @@ function bilink(root) {
   for (const d of root.leaves()) for (const o of d.outgoing) o[1].incoming.push(o);
   return root;
 }
+
+function getPlayer(players, position, substitutes, SUBSTITUTIONS_COUNT) {
+  let player = players.find(d => d['Best Position'] === position);
+  if (!player) {
+    for (let i = 0; i < substitutes.length; i++) {
+      player = players.filter(d => d['Best Position'] === substitutes[i]);
+      switch (substitutes[i]) {
+        case 'CF':
+          player = player[SUBSTITUTIONS_COUNT[substitutes[i]]];
+          SUBSTITUTIONS_COUNT[substitutes[i]] += 1;
+          break;
+        default:
+          player = player[SUBSTITUTIONS_COUNT[substitutes[i]] + 1];
+          SUBSTITUTIONS_COUNT[substitutes[i]] += 1;
+          break;
+      }
+      if (player) {
+        return player;
+      }
+    }
+  }
+  return player;
+}
+
+function loadText() {
+  fieldSVG.append('text')
+    .attr('x', 30)
+    .attr('y', 130)
+    .style('fill', '#FFF')
+    .style('font-weight', 'bold')
+    .text('País selecionado não possui jogadores');
+  
+  fieldSVG.append('text')
+    .attr('x', 50)
+    .attr('y', 160)
+    .style('fill', '#FFF')
+    .style('font-weight', 'bold')
+    .text('suficientes para montar um time.');
+}

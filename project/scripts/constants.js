@@ -2,6 +2,9 @@
 const fieldSVG = d3.select('#field').select('svg');
 const fieldWidth = 360;
 const fieldHeight = 500;
+const radius = 10;
+const flagSize = 40;
+const jSize = 50;
 
 // rowChart - Top five players
 const rowChart = new dc.RowChart('#row-chart');
@@ -27,12 +30,15 @@ const outline = ({type: 'Sphere'});
 const projection = d3.geoNaturalEarth1();
 const path = d3.geoPath(projection);
 const mapWidth = 975;
-const mapHeight = () => {
-  const [[x0, y0], [x1, y1]] = d3.geoPath(projection.fitWidth(mapWidth, outline)).bounds(outline);
-  const dy = Math.ceil(y1 - y0), l = Math.min(Math.ceil(x1 - x0), dy);
-  projection.scale(projection.scale() * (l - 1) / l).precision(0.2);
-  return dy;
-};
+const mapHeight = () => 500;
+// const mapHeight = () => {
+//   const [[x0, y0], [x1, y1]] = d3.geoPath(projection.fitWidth(mapWidth, outline)).bounds(outline);
+//   const dy = Math.ceil(y1 - y0), l = Math.min(Math.ceil(x1 - x0), dy);
+//   projection.scale(projection.scale() * (l - 1) / l).precision(0.2);
+//   return dy;
+// };
+
+const colorMap = d3.schemeYlGn[6];
 
 // Maps Constants
 const flagID = new Map([

@@ -12,6 +12,7 @@ function loadBarChart() {
     .x(barScale)
     .elasticY(true)
     .xAxisLabel('Idade')
+    .ordinalColors(['#f3721e'])
     .valueAccessor(d => d.value.average)
     .brushOn(false);
 

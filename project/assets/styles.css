@@ -37,7 +37,7 @@ line.link {
 
 #mapid {
     width: 750px;
-    height: 590px;
+    /* height: 590px; */
 }
 
 .info {
@@ -59,10 +59,16 @@ line.link {
     color: #555;
 }
 
+.custom-legend {
+    right: 0;
+    top: 10px;
+}
+
 .legend i {
-    width: 18px;
+    display: block;
+    width: 40px;
     height: 18px;
-    float: left;
-    margin-right: 8px;
+    margin-right: 0px;
+    float: unset;
     opacity: 0.7;
 }

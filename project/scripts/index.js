@@ -15,6 +15,7 @@ const promises = [
     let id = flagID.get(d.Nationality);
     flagMap.set(d.Nationality, 'https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/ratings-collective/f20assets/country-flags/'+ id +'.png');
     faceMap.set(d.ID, 'https://www.fifaindex.com/static/FIFA21/images/players/10/'+ d.ID +'.webp');
+    d.Overall = +d.Overall;
     if (overallMap.get(d.Nationality) >= d.Overall) {
       // do nothing
     } else {
@@ -29,8 +30,8 @@ const promises = [
       d.Wage = +d.Wage.replace(/\D/g, '');
     }
     let [feet, inches] = d.Height.split("'"); // split the height in feet and inches (5'6);
-    d.Height = ((+feet * 30.48) + (+inches * 2.54)) / 100; // height in m
-    d.Weight = +d.Weight.replace(/\D/g, '') / 2.205; // convert lbs to kg
+    d.Height = (((+feet * 30.48) + (+inches * 2.54)) / 100).toFixed(2); // height in m
+    d.Weight = +(d.Weight.replace(/\D/g, '') / 2.205).toFixed(2); // convert lbs to kg
     return d;
   }),
   d3.json('https://raw.githubusercontent.com/icarodelay/projeto-datavis-fifa/main/custom.geo.json'),
@@ -68,9 +69,13 @@ function ready([data, countries, graph, world]) {
   ageDimension = facts.dimension(d => d.Age);
 
   // Color Scale
-  colorScale = d3.scaleSequential()
+  // colorScale = d3.scaleSequential()
+  //   .domain(d3.extent(Array.from(overallMap.values())))
+  //   .interpolator(d3.interpolateYlGnBu)
+  //   .unknown('#ccc');
+  colorScale = d3.scaleQuantize()
     .domain(d3.extent(Array.from(overallMap.values())))
-    .interpolator(d3.interpolateYlGnBu)
+    .range(colorMap)
     .unknown('#ccc');
 
   loadField();

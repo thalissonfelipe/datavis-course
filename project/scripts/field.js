@@ -1,21 +1,10 @@
 function loadField(country) {
   const playersraw = seriesDim.top(Infinity);
   const players = country
-    ? playersraw.filter(d => d['Nationality'] === country)
+    ? country === 'United Kingdom'
+      ? playersraw.filter(d => ['England', 'Scotland', 'Northern Ireland', 'Wales'].includes(d.Nationality))
+      : playersraw.filter(d => d.Nationality === country)
     : playersraw;
-
-  // players
-  const LWTopPlayer = players.filter(d => d['Best Position'] === 'LW')[0];
-  const STTopPlayer = players.filter(d => d['Best Position'] === 'ST')[0];
-  const RWTopPlayer = players.filter(d => d['Best Position'] === 'RW')[0];
-  const CAMTopPlayer = players.filter(d => d['Best Position'] === 'CAM')[0];
-  const LMTopPlayer = players.filter(d => d['Best Position'] === 'CDM')[0];
-  const RMTopPlayer = players.filter(d => d['Best Position'] === 'CM')[0];
-  const LBTopPlayer = players.filter(d => d['Best Position'] === 'LB')[0];
-  const RBTopPlayer = players.filter(d => d['Best Position'] === 'RB')[0];
-  const RCBTopPlayer = players.filter(d => d['Best Position'] === 'CB')[1];
-  const LCBTopPlayer = players.filter(d => d['Best Position'] === 'CB')[0];
-  const GKTopPlayer = players.filter(d => d['Best Position'] === 'GK')[0];
 
   fieldSVG.selectAll('*').remove();
 
@@ -107,9 +96,57 @@ function loadField(country) {
     .attr('r', 2)
     .attr('fill', '#FFFFFF');
 
-  const radius = 10;
-  const flagSize = 40;
-  const jSize = 50;
+  if (players.length < 11) { // Min players: 11
+    loadText();
+    return;
+  }
+
+  const LWSubstitute = ['ST', 'CF', 'RW', 'CAM', 'CDM', 'CM'];
+  const STSubstitute = ['CF', 'LW', 'RW', 'CAM', 'CDM', 'CM'];
+  const RWSubstitute = ['ST', 'CF', 'LW', 'CAM', 'CDM', 'CM'];
+  const CAMSubstitute = ['CDM', 'CM'];
+  const LMSubstitute = ['CAM', 'CM'];
+  const RMSubstitute = ['CAM', 'CDM'];
+  const LBSubstitute = ['LWB', 'RW', 'RWB'];
+  const RBSubstitute = ['RWB', 'LW', 'LWB'];
+
+  const SUBSTITUTIONS_COUNT = {
+    ST: 0,
+    CF: 0,
+    LW: 0,
+    RW: 0,
+    CAM: 0,
+    CDM: 0,
+    CM: 0,
+    LB: 0,
+    RB: 0,
+    LWB: 0,
+    RWB: 0
+  };
+
+  // players
+  const LWTopPlayer = getPlayer(players, 'LW', LWSubstitute, SUBSTITUTIONS_COUNT);
+  const STTopPlayer = getPlayer(players, 'ST', STSubstitute, SUBSTITUTIONS_COUNT);
+  const RWTopPlayer = getPlayer(players, 'RW', RWSubstitute, SUBSTITUTIONS_COUNT);
+  const CAMTopPlayer = getPlayer(players, 'CAM', CAMSubstitute, SUBSTITUTIONS_COUNT);
+  const LMTopPlayer = getPlayer(players, 'CDM', LMSubstitute, SUBSTITUTIONS_COUNT);
+  const RMTopPlayer = getPlayer(players, 'CM', RMSubstitute, SUBSTITUTIONS_COUNT);
+  const LBTopPlayer = getPlayer(players, 'LB', LBSubstitute, SUBSTITUTIONS_COUNT);
+  const RBTopPlayer = getPlayer(players, 'RB', RBSubstitute, SUBSTITUTIONS_COUNT);
+  const LCBTopPlayer = players.filter(d => d['Best Position'] === 'CB')[0];
+  const RCBTopPlayer = players.filter(d => d['Best Position'] === 'CB')[1];
+  const GKTopPlayer = players.filter(d => d['Best Position'] === 'GK')[0];
+
+  const allPlayers = [
+    LWTopPlayer, STTopPlayer, RWTopPlayer, CAMTopPlayer, LMTopPlayer,
+    RMTopPlayer, LBTopPlayer, RBTopPlayer, LCBTopPlayer, RCBTopPlayer, GKTopPlayer
+  ];
+
+  const hasPlayers = allPlayers.every(player => player);
+  if (!hasPlayers) {
+    loadText();
+    return;
+  }
 
   // --------------------------- LW player --------------------------- //
 

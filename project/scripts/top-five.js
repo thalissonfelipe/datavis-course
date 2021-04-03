@@ -15,7 +15,7 @@ function loadTopFivePlayers() {
     .cap(5)
     .keyAccessor(d => d.key[2])
     .valueAccessor(d => d.value)
-    .colorAccessor(d => d.key[0])
+    .ordinalColors(['#f3721e'])
     .othersGrouper(false);
 
   rowChart.filter = function() {};

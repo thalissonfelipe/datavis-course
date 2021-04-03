@@ -16,7 +16,7 @@ infoControl.update = feat => {
   this._div.innerHTML = '<h5>Melhor Overall</h5>' +
   (feat && bestPlayerMap.get(feat.properties.name) ?
     '<b>' + feat.properties.name + '</b><br/>' +
-    '<img src="' + faceMap.get(bestPlayerMap.get(feat.properties.name)[1]) +
+    '<img onerror="this.src=\'assets/notfound.webp\'" src="' + faceMap.get(bestPlayerMap.get(feat.properties.name)[1]) +
     '" width="50px"/><b style="font-size: 20px">' + overallMap.get(feat.properties.name) +
     '</b><br/><i>' + bestPlayerMap.get(feat.properties.name)[0] + '</i>'
   : 'Passe o mouse sobre um país');
@@ -50,8 +50,13 @@ function resetHighlight(e) {
 }
 
 function updateFilters(e){
-  nationalityDim.filter(d => d === e.properties.name);
-  loadField(e.properties.name)
+  if (e.properties.name === 'United Kingdom') {
+    nationalityDim.filter(n => ['England', 'Scotland', 'Northern Ireland', 'Wales'].includes(n));
+  } else {
+    nationalityDim.filter(n => n === e.properties.name);
+  }
+
+  loadField(e.properties.name);
   dc.redrawAll();
 }
 
@@ -122,4 +127,25 @@ function loadMap(countries, world) {
       style: style,
       onEachFeature: onEachFeature
   }).addTo(map);
+
+  // let legendControl = L.control({ position: 'topright' });
+
+  // legendControl.onAdd = () => {
+  //   let div = L.DomUtil.create('div', 'info legend'),
+  //   labels = [],
+  //   n = colorMap.length;
+
+  //   for (let i = 0; i < n; i++) {
+  //     let c = colorMap[i];
+  //     let fromto = colorScale.invertExtent(c);
+  //     labels.push(
+  //       '<i style="background:' + colorMap[i] + '"></i> ' +
+  //       d3.format("d")(fromto[0]) + (d3.format('d')(fromto[1]) ? '&ndash;' + d3.format('d')(fromto[1]) : '+'));
+  //   }
+
+  //   div.innerHTML = labels.join('<br>');
+  //   return div;
+  // }
+
+  // legendControl.addTo(map);
 }
