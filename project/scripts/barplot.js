@@ -2,7 +2,7 @@ function loadBarChart() {
   // const ageGroup = ageDimension.group().reduceSum(d => d.Wage);
   const ageGroup = ageDimension.group().reduce(reduceAdd, reduceRemove, reduceInitial);
   const ages = ageDimension.top(Infinity).map(d => d.Age);
-  const barScale = d3.scaleLinear().domain(d3.extent(ages)).range([0, barWidth]);
+  const barScale = d3.scaleLinear().domain(d3.extent(ages));
 
   barChart
     .width(barWidth)

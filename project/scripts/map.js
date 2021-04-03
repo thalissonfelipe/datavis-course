@@ -49,14 +49,20 @@ function resetHighlight(e) {
   infoControl.update();
 }
 
-function updateFilters(e){
-  if (e.properties.name === 'United Kingdom') {
+function updateFilters(e) {
+  const country = e.properties.name;
+
+  if (country === 'United Kingdom') {
     nationalityDim.filter(n => ['England', 'Scotland', 'Northern Ireland', 'Wales'].includes(n));
+    loadField(country);
+  } else if (renameInverted.get(country)) {
+    nationalityDim.filter(n => n === renameInverted.get(country));
+    loadField(renameInverted.get(country));
   } else {
-    nationalityDim.filter(n => n === e.properties.name);
+    nationalityDim.filter(n => n === country);
+    loadField(country);
   }
 
-  loadField(e.properties.name);
   dc.redrawAll();
 }
 
@@ -127,25 +133,4 @@ function loadMap(countries, world) {
       style: style,
       onEachFeature: onEachFeature
   }).addTo(map);
-
-  // let legendControl = L.control({ position: 'topright' });
-
-  // legendControl.onAdd = () => {
-  //   let div = L.DomUtil.create('div', 'info legend'),
-  //   labels = [],
-  //   n = colorMap.length;
-
-  //   for (let i = 0; i < n; i++) {
-  //     let c = colorMap[i];
-  //     let fromto = colorScale.invertExtent(c);
-  //     labels.push(
-  //       '<i style="background:' + colorMap[i] + '"></i> ' +
-  //       d3.format("d")(fromto[0]) + (d3.format('d')(fromto[1]) ? '&ndash;' + d3.format('d')(fromto[1]) : '+'));
-  //   }
-
-  //   div.innerHTML = labels.join('<br>');
-  //   return div;
-  // }
-
-  // legendControl.addTo(map);
 }

@@ -243,3 +243,6 @@ const rename = new Map([
   ["Venezuela (Bolivarian Republic of)", "Venezuela"],
   ["Viet Nam", "Vietnam"]
 ]);
+
+const renameInverted = new Map(Array.from(rename, c => c.reverse()));
+renameInverted.delete('Russia');

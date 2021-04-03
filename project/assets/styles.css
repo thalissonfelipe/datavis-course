@@ -25,7 +25,8 @@ line.link {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0.7;
+    opacity: 0.8;
+    z-index: -1;
 }
 
 .club-image img {
