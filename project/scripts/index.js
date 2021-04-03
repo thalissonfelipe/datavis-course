@@ -2,6 +2,7 @@ let flagMap = new Map();
 let faceMap = new Map();
 let overallMap = new Map();
 let bestPlayerMap = new Map();
+let clubMap = new Map();
 
 let facts;
 let seriesDim;
@@ -16,6 +17,12 @@ const promises = [
     flagMap.set(d.Nationality, 'https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/ratings-collective/f20assets/country-flags/'+ id +'.png');
     faceMap.set(d.ID, 'https://www.fifaindex.com/static/FIFA21/images/players/10/'+ d.ID +'.webp');
     d.Overall = +d.Overall;
+    let clubId = d['Club Logo'].match('https://cdn.sofifa.com/teams/(.*)/light_30.png');
+    if (clubId !== null) {
+      clubMap.set(d.Club, 'https://www.fifaindex.com/static/FIFA20/images/crest/3/light/'+clubId[1]+'@3x.webp');
+    } else {
+      clubMap.set(d.Club, 'https://www.kindpng.com/picc/m/547-5479953_grey-shield-svg-clip-arts-hd-png-download.png');
+    }
     if (overallMap.get(d.Nationality) >= d.Overall) {
       // do nothing
     } else {
@@ -61,6 +68,12 @@ function ready([data, countries, graph, world]) {
   ));
   bestPlayerMap.set('United States of America', bestPlayerMap.get('United States'));
   bestPlayerMap.set('United Kingdom', bestPlayerMap.get('England'));
+  clubMap.set('Coritiba','https://www.fifaindex.com/static/FIFA21/images/crest/10/light/111044@3x.webp');
+  clubMap.set('Juventus','https://www.fifaindex.com/static/FIFA19/images/crest/10/light/45@3x.webp');
+  clubMap.set('CSA - AL','https://www.fifaindex.com/static/FIFA20/images/crest/10/light/113677@3x.webp');
+  clubMap.set('Fatih Karagümrük S.K.','https://www.fifaindex.com/static/FIFA21/images/crest/10/light/111117@3x.webp');
+  clubMap.set('Zenit St. Petersburg','https://www.fifaindex.com/static/FIFA18/images/crest/10/light/100769@3x.webp');
+  clubMap.set('FC Krasnodar','https://www.fifaindex.com/static/FIFA18/images/crest/10/light/112218@3x.webp');
 
   // Dimensions
   seriesDim = facts.dimension(d => [d.Overall, d.ID, d.Name]);

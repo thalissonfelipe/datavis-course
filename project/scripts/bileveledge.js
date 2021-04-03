@@ -62,6 +62,8 @@ async function loadBilevelEdgeBundling(graph) {
     .style('mix-blend-mode', 'multiply')
     .attr('d', ([i, o]) => line(i.path(o)))
     .each(function(d) { d.path = this; });
+  
+  const clubImage = document.querySelector('.club-image');
 
   function overed(event, d) {
     link.style('mix-blend-mode', null);
@@ -70,6 +72,8 @@ async function loadBilevelEdgeBundling(graph) {
     d3.selectAll(d.incoming.map(([d]) => d.text)).attr('fill', colorin).attr('font-weight', 'bold');
     d3.selectAll(d.outgoing.map(d => d.path)).attr('stroke', colorout).raise();
     d3.selectAll(d.outgoing.map(([, d]) => d.text)).attr('fill', colorout).attr('font-weight', 'bold');
+    clubImage.style.visibility = 'visible';
+    clubImage.style.backgroundImage = `url(${clubMap.get(d.data.club)})`;
   }
 
   function outed(event, d) {
@@ -79,6 +83,8 @@ async function loadBilevelEdgeBundling(graph) {
     d3.selectAll(d.incoming.map(([d]) => d.text)).attr('fill', null).attr('font-weight', null);
     d3.selectAll(d.outgoing.map(d => d.path)).attr('stroke', null);
     d3.selectAll(d.outgoing.map(([, d]) => d.text)).attr('fill', null).attr('font-weight', null);
+    clubImage.style.visibility = 'hidden';
+    clubImage.style.backgroundImage = '';
   }
 
   return svg.node();
