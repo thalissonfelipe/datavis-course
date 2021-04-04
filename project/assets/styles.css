@@ -109,7 +109,7 @@ line.link {
     position: sticky !important;
     position: -webkit-sticky;
     top: 0;
-    padding: 20px;
+    padding: 20px 0 10px;
     background: white;
     z-index: 9999;
     transform: translateZ(0);
@@ -117,5 +117,5 @@ line.link {
 }
 
 .header img {
-    width: 400px;
+    width: 350px;
 }
