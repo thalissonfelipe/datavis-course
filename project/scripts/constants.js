@@ -6,7 +6,7 @@ const radius = 10;
 const flagSize = 40;
 const jSize = 50;
 
-// rowChart - Top five players
+// RowChart - Top five players
 const rowChart = new dc.RowChart('#row-chart');
 const rowWidth = 400;
 const rowHeight = 200;
@@ -16,7 +16,7 @@ const scatterPlotChart = new dc.ScatterPlot('#scatterplot-chart');
 const scatterWidth = 400;
 const scatterHeight = 200;
 
-// BarChart - Age/Overall
+// BarChart - Age / Wage average
 const barChart = new dc.BarChart('#bar-chart');
 const barWidth = 400;
 const barHeight = 200;
@@ -208,41 +208,47 @@ const flagID = new Map([
 ]);
 
 const rename = new Map([
-  ["Antigua and Barbuda", "Antigua and Barb."],
-  ["Bolivia (Plurinational State of)", "Bolivia"],
-  ["Bosnia Herzegovina", "Bosnia and Herz."],
-  ["Brunei Darussalam", "Brunei"],
-  ["Central African Republic", "Central African Rep."],
-  ["China PR", "China"],
-  ["Czech Republic", "Czechia"],
-  ["Republic of Ireland", "Ireland"],
-  ["Cook Islands", "Cook Is."],
-  ["Democratic People's Republic of Korea", "North Korea"],
-  ["DR Congo", "Dem. Rep. Congo"],
-  ["Dominican Republic", "Dominican Rep."],
-  ["Equatorial Guinea", "Eq. Guinea"],
-  ["Guinea Bissau", "Guinea-Bissau"],
-  ["Iran (Islamic Republic of)", "Iran"],
-  ["Ivory Coast", "Côte d'Ivoire"],
-  ["Lao People's Democratic Republic", "Laos"],
-  ["Marshall Islands", "Marshall Is."],
-  ["Micronesia (Federated States of)", "Micronesia"],
-  ["Korea Republic", "South Korea"],
-  ["Korea DPR", "North Korea"],
-  ["Republic of Moldova", "Moldova"],
-  ["Russian Federation", "Russia"],
-  ["Saint Kitts and Nevis", "St. Kitts and Nevis"],
-  ["Saint Vincent and the Grenadines", "St. Vin. and Gren."],
-  ["Sao Tome and Principe", "São Tomé and Principe"],
-  ["Solomon Islands", "Solomon Is."],
-  ["South Sudan", "S. Sudan"],
-  ["Swaziland", "eSwatini"],
-  ["Syrian Arab Republic", "Syria"],
-  ["The former Yugoslav Republic of Macedonia", "Macedonia"],
-  ["United Republic of Tanzania", "Tanzania"],
-  ["Venezuela (Bolivarian Republic of)", "Venezuela"],
-  ["Viet Nam", "Vietnam"]
+  ['Antigua and Barbuda', 'Antigua and Barb.'],
+  ['Bolivia (Plurinational State of)', 'Bolivia'],
+  ['Bosnia Herzegovina', 'Bosnia and Herz.'],
+  ['Brunei Darussalam', 'Brunei'],
+  ['Central African Republic', 'Central African Rep.'],
+  ['China PR', 'China'],
+  ['Czech Republic', 'Czechia'],
+  ['Republic of Ireland', 'Ireland'],
+  ['Cook Islands', 'Cook Is.'],
+  ["Democratic People's Republic of Korea", 'North Korea'],
+  ['DR Congo', 'Dem. Rep. Congo'],
+  ['Dominican Republic', 'Dominican Rep.'],
+  ['Equatorial Guinea', 'Eq. Guinea'],
+  ['Guinea Bissau', 'Guinea-Bissau'],
+  ['Iran (Islamic Republic of)', 'Iran'],
+  ['Ivory Coast', "Côte d'Ivoire"],
+  ["Lao People's Democratic Republic", 'Laos'],
+  ['Marshall Islands', 'Marshall Is.'],
+  ['Micronesia (Federated States of)', 'Micronesia'],
+  ['Korea Republic', 'South Korea'],
+  ['Korea DPR', 'North Korea'],
+  ['Republic of Moldova', 'Moldova'],
+  ['Russian Federation', 'Russia'],
+  ['Saint Kitts and Nevis', 'St. Kitts and Nevis'],
+  ['Saint Vincent and the Grenadines', 'St. Vin. and Gren.'],
+  ['Sao Tome and Principe', 'São Tomé and Principe'],
+  ['Solomon Islands', 'Solomon Is.'],
+  ['South Sudan', 'S. Sudan'],
+  ['Swaziland', 'eSwatini'],
+  ['Syrian Arab Republic', 'Syria'],
+  ['The former Yugoslav Republic of Macedonia', 'Macedonia'],
+  ['United Republic of Tanzania', 'Tanzania'],
+  ['Venezuela (Bolivarian Republic of)', 'Venezuela'],
+  ['Viet Nam', 'Vietnam']
 ]);
 
 const renameInverted = new Map(Array.from(rename, c => c.reverse()));
 renameInverted.delete('Russia');
+renameInverted.delete('Bolivia');
+renameInverted.delete('Venezuela');
+renameInverted.delete('Syria');
+renameInverted.delete('Tanzania');
+renameInverted.delete('Iran');
+renameInverted.delete('Vietnam');

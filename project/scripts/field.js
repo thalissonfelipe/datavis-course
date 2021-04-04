@@ -107,8 +107,8 @@ function loadField(country) {
   const CAMSubstitute = ['CDM', 'CM'];
   const LMSubstitute = ['CAM', 'CM'];
   const RMSubstitute = ['CAM', 'CDM'];
-  const LBSubstitute = ['LWB', 'RW', 'RWB'];
-  const RBSubstitute = ['RWB', 'LW', 'LWB'];
+  const LBSubstitute = ['LWB', 'RB', 'RWB'];
+  const RBSubstitute = ['RWB', 'LB', 'LWB'];
 
   const SUBSTITUTIONS_COUNT = {
     ST: 0,

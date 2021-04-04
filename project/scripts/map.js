@@ -1,10 +1,10 @@
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-    maxZoom: 12,
-    minZoom: 2,
+  maxZoom: 12,
+  minZoom: 2,
 }).addTo(map);
 
 // InfoControl
-const infoControl = L.control();
+let infoControl = L.control();
 
 infoControl.onAdd = () => {
   this._div = L.DomUtil.create('div', 'info');
@@ -37,8 +37,8 @@ function highlightFeature(e) {
     fillOpacity: 0.7
   });
 
-  if (!L.Browser.ie && !L.Browser.opera) {
-      layer.bringToFront();
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    layer.bringToFront();
   }
 
   infoControl.update(layer.feature);
@@ -51,6 +51,10 @@ function resetHighlight(e) {
 
 function updateFilters(e) {
   const country = e.properties.name;
+  // console.log(country)
+  // if (['Somaliland', 'Greenland', 'Guatemala', 'Czechia', 'Yemen', 'Ethiopia', 'Somalia', 'Pakistan', 'Djibouti', 'Neap', 'Bhutan', 'Bangladesh', 'Myanmar'].includes(country)) {
+  //   return;
+  // }
 
   if (country === 'United Kingdom') {
     nationalityDim.filter(n => ['England', 'Scotland', 'Northern Ireland', 'Wales'].includes(n));
@@ -130,7 +134,7 @@ function loadMap(countries, world) {
     .attr('d', path);
 
   geoj = L.geoJson(countries, {
-      style: style,
-      onEachFeature: onEachFeature
+    style: style,
+    onEachFeature: onEachFeature
   }).addTo(map);
 }
