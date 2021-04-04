@@ -49,12 +49,12 @@ function resetHighlight(e) {
   infoControl.update();
 }
 
+const countryName = document.getElementById('country-name');
+
 function updateFilters(e) {
   const country = e.properties.name;
-  // console.log(country)
-  // if (['Somaliland', 'Greenland', 'Guatemala', 'Czechia', 'Yemen', 'Ethiopia', 'Somalia', 'Pakistan', 'Djibouti', 'Neap', 'Bhutan', 'Bangladesh', 'Myanmar'].includes(country)) {
-  //   return;
-  // }
+
+  if (disabledCountries.includes(country)) return;
 
   if (country === 'United Kingdom') {
     nationalityDim.filter(n => ['England', 'Scotland', 'Northern Ireland', 'Wales'].includes(n));
@@ -66,6 +66,8 @@ function updateFilters(e) {
     nationalityDim.filter(n => n === country);
     loadField(country);
   }
+
+  countryName.innerHTML = `Região: ${country}`;
 
   dc.redrawAll();
 }
@@ -82,6 +84,15 @@ function onEachFeature(feature, layer) {
     click: zoomToFeature,
   });
 }
+
+// Reset all graphs to their initial state
+map.on('dblclick', () => {
+  map.setView([0, 0], 2);
+  nationalityDim.filter(n => n);
+  loadField();
+  dc.redrawAll();
+  countryName.innerHTML = 'Região: Mundo';
+});
 
 function loadMap(countries, world) {
   const mapSVG = d3.select('#mapid').select('svg').attr('viewBox', [0, 0, mapWidth, mapHeight()]);

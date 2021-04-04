@@ -25,7 +25,7 @@ const barHeight = 200;
 const southWest = L.latLng(-90, -180);
 const northEast = L.latLng(90, 180);
 const bounds = L.latLngBounds(southWest, northEast);
-const map = L.map('mapid', { maxBounds: bounds }).setView([0, 0], 2);
+const map = L.map('mapid', { maxBounds: bounds, doubleClickZoom: false }).setView([0, 0], 2);
 const outline = ({type: 'Sphere'});
 const projection = d3.geoNaturalEarth1();
 const path = d3.geoPath(projection);
@@ -39,6 +39,13 @@ const mapHeight = () => 500;
 // };
 
 const colorMap = d3.schemeYlGn[6];
+
+const disabledCountries = [
+  'Somaliland', 'Greenland', 'Guatemala', 'Czech Rep.', 'Yemen', 'Ethiopia',
+  'Somalia', 'Pakistan', 'Djibouti', 'Neap', 'Bhutan', 'Bangladesh', 'Myanmar',
+  'Botswana', 'Swaziland', 'Lesotho', 'Tajikistan', 'Kyrgyzstan', 'Lao PDR',
+  'Cambodia', 'Taiwan', 'Korea', 'Dem. Rep. Korea', 'Mongolia'
+];
 
 // Maps Constants
 const flagID = new Map([

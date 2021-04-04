@@ -1,5 +1,6 @@
 html, body {
-    height: 100%;
+    min-height: 100%;
+    position: relative;
 }
 
 line.link {
@@ -69,4 +70,40 @@ line.link {
     margin-right: 0px;
     float: unset;
     opacity: 0.7;
+}
+
+.parallax {
+    background-image: url(background.jpg);
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax-content {
+    height: 100vh;
+    background-color: transparent;
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+#main {
+    height: 100vh;
+}
+
+.header {
+    position: sticky !important;
+    position: -webkit-sticky;
+    top: 0;
+    padding: 20px;
+    background: white;
+    z-index: 9999;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+.header img {
+    width: 400px;
 }
