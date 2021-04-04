@@ -19,7 +19,7 @@ infoControl.update = feat => {
     '<img onerror="this.src=\'assets/notfound.webp\'" src="' + faceMap.get(bestPlayerMap.get(feat.properties.name)[1]) +
     '" width="50px"/><b style="font-size: 20px">' + overallMap.get(feat.properties.name) +
     '</b><br/><i>' + bestPlayerMap.get(feat.properties.name)[0] + '</i>'
-  : 'Passe o mouse sobre um país');
+  : '<span>Passe o mouse sobre um país.</span><br/><br/><span>Clique duas vezes para resetar o mapa.</span>');
 }
 
 infoControl.addTo(map);

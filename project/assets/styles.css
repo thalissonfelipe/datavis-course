@@ -85,8 +85,20 @@ line.link {
     height: 100vh;
     background-color: transparent;
     color: white;
-    font-size: 50px;
-    font-weight: 700;
+}
+
+.parallax-content h1,
+.parallax-content p {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8),
+                 1px 1px 30px rgba(0, 0, 0, 0.75);
+}
+
+.parallax-content h1 {
+    font-size: 40px;
+}
+
+.parallax-content p {
+    font-size: 20px;
 }
 
 #main {

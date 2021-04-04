@@ -44,7 +44,7 @@ const disabledCountries = [
   'Somaliland', 'Greenland', 'Guatemala', 'Czech Rep.', 'Yemen', 'Ethiopia',
   'Somalia', 'Pakistan', 'Djibouti', 'Neap', 'Bhutan', 'Bangladesh', 'Myanmar',
   'Botswana', 'Swaziland', 'Lesotho', 'Tajikistan', 'Kyrgyzstan', 'Lao PDR',
-  'Cambodia', 'Taiwan', 'Korea', 'Dem. Rep. Korea', 'Mongolia'
+  'Cambodia', 'Taiwan', 'Mongolia'
 ];
 
 // Maps Constants
@@ -234,8 +234,8 @@ const rename = new Map([
   ["Lao People's Democratic Republic", 'Laos'],
   ['Marshall Islands', 'Marshall Is.'],
   ['Micronesia (Federated States of)', 'Micronesia'],
-  ['Korea Republic', 'South Korea'],
-  ['Korea DPR', 'North Korea'],
+  ['Korea Republic', 'Korea'],
+  ['Korea DPR', 'Dem. Rep. Korea'],
   ['Republic of Moldova', 'Moldova'],
   ['Russian Federation', 'Russia'],
   ['Saint Kitts and Nevis', 'St. Kitts and Nevis'],
