@@ -27,7 +27,7 @@ function reduceAdd(p, v) {
   if (p.count === 0) {
     p.average = 0;
   } else {
-    p.average = p.total / p.count;
+    p.average = +(p.total / p.count).toFixed(2);
   }
   return p;
 }
@@ -38,7 +38,7 @@ function reduceRemove(p, v) {
   if (p.count === 0) {
     p.average = 0;
   } else {
-    p.average = p.total / p.count;
+    p.average = +(p.total / p.count).toFixed(2);
   }
   return p;
 }
