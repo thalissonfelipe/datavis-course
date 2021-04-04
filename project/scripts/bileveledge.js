@@ -49,8 +49,8 @@ async function loadBilevelEdgeBundling(graph) {
     .on('mouseover', overed)
     .on('mouseout', outed)
     .call(text => text.append('title').text(d => `${d.data.club}
-      ${d.outgoing.length} outgoing
-      ${d.incoming.length} incoming`
+      ${d.outgoing.length} chegando
+      ${d.incoming.length} partindo`
     ));
 
   const link = svg.append('g')

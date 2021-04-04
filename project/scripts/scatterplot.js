@@ -19,8 +19,8 @@ function loadScatterPlot() {
     .brushOn(false)
     .symbolSize(5)
     .renderLabel(false)
-    .xAxisLabel('Weight (kg)')
-    .yAxisLabel('Height (m)')
+    .xAxisLabel('Peso (kg)')
+    .yAxisLabel('Altura (m)')
     .colors(colorScale)
     .colorAccessor(d => d.key[2]);
 
