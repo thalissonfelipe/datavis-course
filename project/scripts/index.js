@@ -50,7 +50,6 @@ const promises = [
   }),
   d3.json('https://raw.githubusercontent.com/icarodelay/projeto-datavis-fifa/main/custom.geo.json'),
   d3.json('https://raw.githubusercontent.com/icarodelay/projeto-datavis-fifa/main/club_transfers_data_over_74.json'),
-  d3.json('countries-50m.json'),
   d3.csv('https://raw.githubusercontent.com/icarodelay/projeto-datavis-fifa/main/FIFA21_official_data.csv', function(d) {
     if (overallMap.get(d.Nationality) == d.Overall) {
       bestPlayerMap.set(d.Nationality, [d.Name, d.ID]);
@@ -63,7 +62,7 @@ const promises = [
 
 Promise.all(promises).then(ready);
 
-function ready([data, countries, graph, world]) {
+function ready([data, countries, graph]) {
   facts = crossfilter(data);
 
   overallMap.set('United States of America', overallMap.get('United States'));
@@ -99,7 +98,7 @@ function ready([data, countries, graph, world]) {
     .unknown('#ccc');
 
   loadField();
-  loadMap(countries, world);
+  loadMap(countries);
   loadTopFivePlayers();
   loadScatterPlot();
   loadBarChart();
