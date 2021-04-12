@@ -1,15 +1,38 @@
-## Visualização de Dados - UFC
+# Análises e Visualizações sobre Jogadores de Futebol baseados na franquia FIFA
 
-Este repositório será utilizado na disciplina de Visualização de Dados com a professora Dr. Emanuele Santos - UFC.
+<img src="assets/FIFA-logo.png" alt="FIFA" />
 
-[index01.html](basic/index01.html)<br>
-[index02.html](basic/index02.html)<br>
-[index03.html](basic/index03.html)<br>
-[index04.html](basic/index04.html)<br>
-[index05.html](basic/index05.html)<br>
-[index06.html](basic/index06.html)<br>
-[index07.html](basic/index07.html)<br>
-[index08.html](basic/index08.html)<br>
-[index09.html](basic/index09.html)<br>
+O projeto é baseado em informações agregadas à franquia de jogos FIFA, desenvolvidas pela EA Games. A franquia tem parceria direta com a própria FIFA (Fédération Internationale de Football Association). O jogo é atualizado constantemente com estatísticas e dados recentes acerca de cada um dos jogadores dos principais clubes e seleções do mundo. Apresentaremos visualizações sobre os jogadores, clubes, negócios e  outras informações acerca do esporte entre os anos de 2019 e 2020 (dados dos jogos FIFA 20 e FIFA 21). Mostraremos relações entre habilidade nativa e potencial dos jogadores, quais os melhores jogadores por nacionalidade, melhores jogadores por posição tática, jogadores mais valorizados no mercado, etc.
 
-[Projeto Final](project/index.html)
+## Tecnologias utilizadas
+
+* Javascript
+* HTML
+* CSS
+* Bootstrap
+* D3.js
+* Crossfilter
+* DC.js
+* Leaflet.js
+* ObservableHQ
+
+## Como instalar?
+
+Depois de baixado ou clonado o repositório, você pode abrir a visualização utilizando umas das seguintes opções:
+
+1. Basta abrir o arquivo index.html no browser de sua preferência.
+
+2. Se tiver o python instalado, entre no diretório raíz e digite o seguinte comando no terminal:
+
+    ```
+    python -m http.server 8000
+    ```
+
+    Isso criará um servidor web local no diretório raiz na porta 8000. Você pode ir para esse servidor acessando a URL `http://localhost:8000` no seu navegador web.
+
+3. A aplicação pode ser acessada por meio do GitHub Pages através desse [link](https://thalissonfelipe.github.io/datavis-course/project/index.html).
+
+## TODO
+
+- [ ] Adicionar tooltip nos jogadores do campo, mostrando informações como idade, salário, clube...
+- [ ] Investigar problema do hover no mapa (algumas vezes não funciona, necessário atualizar a página).
